@@ -57,7 +57,7 @@ class OnboardingScreen extends StatelessWidget {
                               width: 12,
                             ),
                             Text(
-                              "Add and Manage your bills in one place",
+                              onboardingFeature1,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -76,7 +76,7 @@ class OnboardingScreen extends StatelessWidget {
                               width: 12,
                             ),
                             Text(
-                              "Get Notified when it’s time to pay your bill",
+                              onboardingFeature2,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -95,7 +95,7 @@ class OnboardingScreen extends StatelessWidget {
                               width: 12,
                             ),
                             Text(
-                              "Reports & Insights on your expenses",
+                              onboardingFeature3,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -114,7 +114,7 @@ class OnboardingScreen extends StatelessWidget {
                               width: 12,
                             ),
                             Text(
-                              "Supports multiple languages & currencies",
+                              onboardingFeature4,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -134,7 +134,7 @@ class OnboardingScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: secondaryColor,
                           elevation: 6,
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(11)))),
                       child: const Text(

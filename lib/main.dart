@@ -1,4 +1,4 @@
-import 'package:billy_bills_reminder_app/views/splash_screen.dart';
+import 'package:billy_bills_reminder_app/utilities/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,8 +10,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: SplashScreen(),
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: AppRoutes().router,
     );
   }
 }

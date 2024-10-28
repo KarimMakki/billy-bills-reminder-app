@@ -1,5 +1,7 @@
 import 'package:billy_bills_reminder_app/constants/constants.dart';
+import 'package:billy_bills_reminder_app/utilities/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -130,7 +132,9 @@ class OnboardingScreen extends StatelessWidget {
                     width: constraints.maxWidth * 0.95,
                     height: 52,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.go(RoutePath.home.path);
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: secondaryColor,
                           elevation: 6,

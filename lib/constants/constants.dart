@@ -7,11 +7,6 @@ const Color upcomingColor = Color(0xFFFFC404);
 const Color overdueColor = Color(0xFFFF8204);
 const Color paidColor = Color(0xFFA7FF04);
 
-// Routes Paths
-const String onboardingRoute = "/onboarding";
-const String splashScreenRoute = "/";
-const String homeScreenRoute = "/home";
-
 // Onboarding Features
 const String onboardingFeature1 = "Add and Manage your bills in one place";
 const String onboardingFeature2 =

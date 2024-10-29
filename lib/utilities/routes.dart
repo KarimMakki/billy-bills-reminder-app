@@ -5,7 +5,7 @@ import 'package:billy_bills_reminder_app/views/home_screen.dart';
 import 'package:billy_bills_reminder_app/views/onboarding_screen.dart';
 import 'package:billy_bills_reminder_app/views/reports_insights_screen.dart';
 import 'package:billy_bills_reminder_app/views/splash_screen.dart';
-import 'package:billy_bills_reminder_app/views/widgets/main_body.dart';
+import 'package:billy_bills_reminder_app/views/main_body.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

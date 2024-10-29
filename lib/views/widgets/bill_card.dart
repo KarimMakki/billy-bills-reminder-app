@@ -9,10 +9,11 @@ class BillCard extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         // Get the width and height of the available space using constraints.
-        double cardHeight = constraints.maxHeight *
-            0.11; // Height relative to the available space
+        double cardHeight = MediaQuery.sizeOf(context).height *
+            0.12; // Height relative to the available space
 
         return Container(
+          margin: const EdgeInsets.all(10),
           width: constraints.maxWidth,
           height: cardHeight,
           decoration: BoxDecoration(

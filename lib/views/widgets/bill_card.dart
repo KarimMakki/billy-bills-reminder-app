@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:billy_bills_reminder_app/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class BillCard extends StatelessWidget {
-  const BillCard({super.key});
+  final String billTitle;
+  const BillCard({super.key, required this.billTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +49,7 @@ class BillCard extends StatelessWidget {
                         style: Theme.of(context).primaryTextTheme.titleMedium,
                       ),
                       Text(
-                        "Electricity Bill",
+                        billTitle,
                         style: Theme.of(context).primaryTextTheme.titleSmall,
                       ),
                       Text(

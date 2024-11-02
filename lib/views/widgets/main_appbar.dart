@@ -1,4 +1,6 @@
+import 'package:billy_bills_reminder_app/utilities/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MainAppbar extends StatelessWidget implements PreferredSizeWidget {
   const MainAppbar({
@@ -32,15 +34,15 @@ class MainAppbar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
-        Padding(
+        IconButton(
+          onPressed: () => context.push(RoutePath.billsHistory.path),
           padding: const EdgeInsets.symmetric(horizontal: 2.0),
-          child: Image.asset(
-            "assets/images/bills-history.png",
-          ),
+          icon: Image.asset("assets/images/bills-history.png"),
         ),
-        Padding(
+        IconButton(
+          onPressed: () => context.push(RoutePath.settings.path),
           padding: const EdgeInsets.symmetric(horizontal: 2.0),
-          child: Image.asset("assets/images/settings.png"),
+          icon: Image.asset("assets/images/settings.png"),
         )
       ],
     );

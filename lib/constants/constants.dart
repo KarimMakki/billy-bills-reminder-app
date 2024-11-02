@@ -6,6 +6,7 @@ const Color secondaryColor = Color(0xFF63CDF6);
 const Color upcomingColor = Color(0xFFFFC404);
 const Color overdueColor = Color(0xFFFF8204);
 const Color paidColor = Color(0xFFA7FF04);
+const Color highlightColor = Color(0xFFC7C7C7);
 
 // Onboarding Features
 const String onboardingFeature1 = "Add and Manage your bills in one place";

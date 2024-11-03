@@ -40,44 +40,69 @@ class BottomNavbar extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: Image.asset(
-                  "assets/images/bills-icon.jpg",
-                  height: 30,
-                  width: 30,
-                ),
-                label: 'Section A'),
+              label: "Section A",
+              activeIcon: Image.asset(
+                "assets/images/active-bills-icon.png",
+                height: 33,
+                width: 33,
+              ),
+              icon: Image.asset(
+                "assets/images/bills-icon.png",
+                height: 30,
+                width: 30,
+              ),
+            ),
             BottomNavigationBarItem(
-                icon: Image.asset(
-                  "assets/images/calendar-icon.png",
-                  height: 30,
-                  width: 30,
-                ),
-                label: 'Section A'),
+              label: "Section A",
+              activeIcon: Image.asset(
+                "assets/images/active-calendar-icon.png",
+                height: 33,
+                width: 33,
+              ),
+              icon: Image.asset(
+                "assets/images/calendar-icon.png",
+                height: 30,
+                width: 30,
+              ),
+            ),
             const BottomNavigationBarItem(
-                icon: CircleAvatar(
-                  radius: 18,
-                  backgroundColor: primaryColor,
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.white,
-                    size: 30,
-                  ),
+              label: "Section A",
+              icon: CircleAvatar(
+                radius: 18,
+                backgroundColor: primaryColor,
+                child: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                  size: 30,
                 ),
-                label: 'Section A'),
+              ),
+            ),
             BottomNavigationBarItem(
-                icon: Image.asset(
-                  "assets/images/reports-icon.png",
-                  height: 30,
-                  width: 30,
-                ),
-                label: 'Section A'),
+              label: "Section A",
+              activeIcon: Image.asset(
+                "assets/images/active-reports-icon.png",
+                height: 36,
+                width: 36,
+              ),
+              icon: Image.asset(
+                "assets/images/reports-icon.png",
+                height: 28,
+                width: 28,
+              ),
+            ),
             BottomNavigationBarItem(
-                icon: Image.asset(
-                  "assets/images/budget-planner-icon.png",
-                  height: 28,
-                  width: 28,
-                ),
-                label: 'Section A'),
+              label: "Section A",
+              activeIcon: Image.asset(
+                "assets/images/active-budget-planner-icon.png",
+                height: 36,
+                width: 36,
+              ),
+              icon: Image.asset(
+                "assets/images/budget-planner-icon.png",
+                height: 28,
+                width: 28,
+              ),
+            ),
           ],
           currentIndex: navigationShell.currentIndex,
           onTap: (int index) async {

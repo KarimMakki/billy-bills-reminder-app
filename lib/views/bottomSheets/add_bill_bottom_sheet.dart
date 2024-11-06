@@ -1,6 +1,6 @@
 import 'package:billy_bills_reminder_app/constants/constants.dart';
 import 'package:billy_bills_reminder_app/views/bottomSheets/duration_bottom_sheet.dart';
-import 'package:billy_bills_reminder_app/views/bottomSheets/reminder_time_bottom_sheet.dart';
+import 'package:billy_bills_reminder_app/views/dialogs/reminder_time_popup.dart';
 import 'package:billy_bills_reminder_app/views/widgets/custom_selection_button.dart';
 import 'package:billy_bills_reminder_app/views/widgets/custom_textfield.dart';
 import 'package:billy_bills_reminder_app/views/widgets/icons_grid.dart';

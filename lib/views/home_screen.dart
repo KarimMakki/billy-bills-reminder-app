@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:billy_bills_reminder_app/constants/constants.dart';
 import 'package:billy_bills_reminder_app/views/dialogs/edit_bill_dialog.dart';
 import 'package:billy_bills_reminder_app/views/widgets/bill_card.dart';

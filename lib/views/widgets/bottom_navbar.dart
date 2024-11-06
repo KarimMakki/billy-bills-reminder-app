@@ -1,9 +1,10 @@
 import 'package:billy_bills_reminder_app/constants/constants.dart';
+import 'package:billy_bills_reminder_app/views/bottomSheets/add_bill_bottom_sheet.dart';
 import 'package:billy_bills_reminder_app/views/widgets/custom_selection_button.dart';
 import 'package:billy_bills_reminder_app/views/widgets/custom_textfield.dart';
 import 'package:billy_bills_reminder_app/views/widgets/icons_grid.dart';
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 class BottomNavbar extends StatelessWidget {
@@ -16,6 +17,7 @@ class BottomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<DateTime?>? date;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
       height: 70,
@@ -107,216 +109,7 @@ class BottomNavbar extends StatelessWidget {
           currentIndex: navigationShell.currentIndex,
           onTap: (int index) async {
             if (index == 2) {
-              await showModalBottomSheet(
-                showDragHandle: true,
-                useSafeArea: true,
-                context: context,
-                isScrollControlled: true,
-                useRootNavigator: true,
-                enableDrag: true,
-                builder: (context) {
-                  return DraggableScrollableSheet(
-                    // maxChildSize: 0.5,
-                    expand: true,
-                    initialChildSize: 1,
-                    builder: (context, scrollController) {
-                      final theme = Theme.of(context);
-                      return Material(
-                          color: theme.scaffoldBackgroundColor,
-                          shape: theme.bottomSheetTheme.shape,
-                          clipBehavior: Clip.hardEdge,
-                          child: ListView(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  IconButton(
-                                      onPressed: () {
-                                        context.pop();
-                                      },
-                                      icon: const Icon(Icons.close)),
-                                  Text(
-                                    "New Bill",
-                                    style:
-                                        Theme.of(context).textTheme.titleMedium,
-                                  )
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0, vertical: 8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Title",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(
-                                              fontWeight: FontWeight.bold),
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    const CustomTextfield(
-                                      width: double.infinity,
-                                      height: 35,
-                                    ),
-                                    const SizedBox(
-                                      height: 25,
-                                    ),
-                                    Text(
-                                      "Category",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(
-                                              fontWeight: FontWeight.bold),
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    const CustomSelectionButton(
-                                      icon: Icons.category,
-                                      buttonText: "Select a Category",
-                                      height: 50,
-                                      width: double.infinity,
-                                    ),
-                                    const SizedBox(
-                                      height: 25,
-                                    ),
-                                    Text(
-                                      "Icon",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(
-                                              fontWeight: FontWeight.bold),
-                                    ),
-                                    const IconsGrid(),
-                                    const SizedBox(
-                                      height: 12,
-                                    ),
-                                    Align(
-                                      alignment: Alignment.centerRight,
-                                      child: ElevatedButton(
-                                          onPressed: () {},
-                                          style: ElevatedButton.styleFrom(
-                                              minimumSize: Size(
-                                                  MediaQuery.sizeOf(context)
-                                                          .width *
-                                                      0.3,
-                                                  30),
-                                              shape:
-                                                  const BeveledRectangleBorder(),
-                                              backgroundColor: secondaryColor),
-                                          child: const Text(
-                                            "More Icons",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
-                                          )),
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Flexible(
-                                          flex: 1,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              const Text(
-                                                "Due Date",
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              CustomSelectionButton(
-                                                icon: Icons.calendar_month,
-                                                height: 50,
-                                                width:
-                                                    MediaQuery.sizeOf(context)
-                                                            .width *
-                                                        0.5,
-                                                hintText: "01/01/2000",
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        const SizedBox(width: 5),
-                                        Flexible(
-                                          flex: 1,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              const Text(
-                                                "How Often?",
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              CustomSelectionButton(
-                                                icon: Icons.alarm,
-                                                height: 50,
-                                                width:
-                                                    MediaQuery.sizeOf(context)
-                                                            .width *
-                                                        0.5,
-                                                hintText: "Duration",
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 25),
-                                    const Text(
-                                      "When shall we remind you?",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    const CustomSelectionButton(
-                                        icon: Icons.notifications_active,
-                                        buttonText: "Select a reminder",
-                                        width: double.infinity,
-                                        height: 50),
-                                    const SizedBox(height: 25),
-                                    const Text(
-                                      "Additional Notes",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    const CustomTextfield(
-                                        width: double.infinity, height: 100),
-                                    SizedBox(
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                0.07)
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ));
-                    },
-                  );
-                },
-              );
+              await addBillBottomSheet(context, date);
             } else {
               navigationShell.goBranch(index);
             }

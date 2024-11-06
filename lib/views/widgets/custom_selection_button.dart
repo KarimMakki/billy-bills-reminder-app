@@ -7,11 +7,13 @@ class CustomSelectionButton extends StatelessWidget {
   final String? buttonText;
   final String? hintText;
   final IconData icon;
+  final Function()? onPressed;
   const CustomSelectionButton(
       {super.key,
       required this.width,
       required this.height,
       required this.icon,
+      required this.onPressed,
       this.buttonText,
       this.hintText});
 
@@ -34,7 +36,9 @@ class CustomSelectionButton extends StatelessWidget {
           buttonText != null
               ? Text(
                   buttonText ?? "",
-                  style: const TextStyle(color: primaryColor),
+                  style: const TextStyle(
+                    color: primaryColor,
+                  ),
                 )
               : Text(
                   hintText ?? "",
@@ -42,11 +46,15 @@ class CustomSelectionButton extends StatelessWidget {
                     color: Colors.grey.shade400,
                   ),
                 ),
-          const Spacer(),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.arrow_downward),
-            color: primaryColor,
+          Expanded(
+            child: Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                onPressed: onPressed,
+                icon: const Icon(Icons.arrow_downward),
+                color: primaryColor,
+              ),
+            ),
           )
         ],
       ),

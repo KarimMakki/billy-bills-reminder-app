@@ -1,75 +1,27 @@
 import 'package:billy_bills_reminder_app/constants/constants.dart';
 import 'package:billy_bills_reminder_app/models/bill_model.dart';
+import 'package:billy_bills_reminder_app/viewmodels/home_screen_viewmodel.dart';
 import 'package:billy_bills_reminder_app/views/dialogs/edit_bill_dialog.dart';
 import 'package:billy_bills_reminder_app/views/widgets/bill_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  List<BillModel> bills = [
-    BillModel(
-        title: "Electricity Bill",
-        category: "Utility",
-        amount: 100,
-        icon: Icons.bolt,
-        dueDate: DateTime.now(),
-        reminderTime: DateTime.timestamp(),
-        duration: BillDuration.Yearly,
-        billStatus: BillStatus.Paid),
-    BillModel(
-        title: "Water Bill",
-        category: "Utility",
-        amount: 50,
-        icon: Icons.water_drop,
-        dueDate: DateTime.now(),
-        reminderTime: DateTime.timestamp(),
-        duration: BillDuration.Monthly,
-        billStatus: BillStatus.Overdue),
-    BillModel(
-        title: "Internet Bill",
-        category: "Utility",
-        amount: 200,
-        icon: Icons.wifi,
-        dueDate: DateTime.now(),
-        reminderTime: DateTime.timestamp(),
-        duration: BillDuration.Weekly,
-        billStatus: BillStatus.Upcoming),
-    BillModel(
-        title: "Electricity Bill",
-        category: "Utility",
-        amount: 100,
-        icon: Icons.bolt,
-        dueDate: DateTime.now(),
-        reminderTime: DateTime.timestamp(),
-        duration: BillDuration.Yearly,
-        billStatus: BillStatus.Paid),
-    BillModel(
-        title: "Water Bill",
-        category: "Utility",
-        amount: 50,
-        icon: Icons.water_drop,
-        dueDate: DateTime.now(),
-        reminderTime: DateTime.timestamp(),
-        duration: BillDuration.Monthly,
-        billStatus: BillStatus.Overdue),
-    BillModel(
-        title: "Internet Bill",
-        category: "Utility",
-        amount: 200,
-        icon: Icons.wifi,
-        dueDate: DateTime.now(),
-        reminderTime: DateTime.timestamp(),
-        duration: BillDuration.Weekly,
-        billStatus: BillStatus.Upcoming),
-  ];
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final homeviewmodel = ref.watch(homeViewModelProvider);
+    final allBills = homeviewmodel.allBills;
+    final upcomingBills = homeviewmodel.upcomingBills;
+    final overdueBills = homeviewmodel.overDueBills;
+    final paidBills = homeviewmodel.paidBills;
+
     return DefaultTabController(
         length: 4,
         child: Scaffold(
@@ -94,32 +46,32 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: TabBarView(children: [
                   ListView.builder(
-                    itemCount: bills.length,
+                    itemCount: allBills.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          editBillDialog(context, bills[index]);
+                          editBillDialog(context, allBills[index]);
                         },
-                        child: BillCard(bill: bills[index]),
+                        child: BillCard(bill: allBills[index]),
                       );
                     },
                   ),
                   ListView.builder(
-                    itemCount: bills.length,
+                    itemCount: upcomingBills.length,
                     itemBuilder: (context, index) {
-                      return BillCard(bill: bills[index]);
+                      return BillCard(bill: upcomingBills[index]);
                     },
                   ),
                   ListView.builder(
-                    itemCount: bills.length,
+                    itemCount: overdueBills.length,
                     itemBuilder: (context, index) {
-                      return BillCard(bill: bills[index]);
+                      return BillCard(bill: overdueBills[index]);
                     },
                   ),
                   ListView.builder(
-                    itemCount: bills.length,
+                    itemCount: paidBills.length,
                     itemBuilder: (context, index) {
-                      return BillCard(bill: bills[index]);
+                      return BillCard(bill: paidBills[index]);
                     },
                   ),
                 ]),

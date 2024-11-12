@@ -1,6 +1,7 @@
 import 'package:billy_bills_reminder_app/constants/constants.dart';
 import 'package:billy_bills_reminder_app/views/bottomSheets/duration_bottom_sheet.dart';
 import 'package:billy_bills_reminder_app/views/dialogs/reminder_time_popup.dart';
+import 'package:billy_bills_reminder_app/views/widgets/bill_amount_textfield.dart';
 import 'package:billy_bills_reminder_app/views/widgets/categories_screen.dart';
 import 'package:billy_bills_reminder_app/views/widgets/custom_selection_button.dart';
 import 'package:billy_bills_reminder_app/views/widgets/custom_textfield.dart';
@@ -76,20 +77,22 @@ Future<dynamic> addBillBottomSheet(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "Title",
                               ),
                               const SizedBox(
                                 height: 5,
                               ),
-                              const CustomTextfield(
+                              CustomTextfield(
                                 width: double.infinity,
                                 height: 35,
+                                labelText: "Enter Bill Title",
+                                controller: TextEditingController(),
                               ),
                               const SizedBox(
-                                height: 25,
+                                height: 20,
                               ),
-                              Text(
+                              const Text(
                                 "Category",
                               ),
                               const SizedBox(
@@ -105,14 +108,28 @@ Future<dynamic> addBillBottomSheet(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            CategoriesScreen(),
+                                            const CategoriesScreen(),
                                       ));
                                 },
                               ),
                               const SizedBox(
-                                height: 25,
+                                height: 20,
                               ),
-                              Text(
+                              const Text(
+                                "Amount Due",
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              BillAmountTextfield(
+                                height: 50,
+                                width: deviceWidth,
+                                controller: TextEditingController(),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              const Text(
                                 "Icon",
                               ),
                               const IconsGrid(),
@@ -125,7 +142,8 @@ Future<dynamic> addBillBottomSheet(
                                     onPressed: () {
                                       Navigator.of(context)
                                           .push(MaterialPageRoute(
-                                        builder: (context) => MoreIconsScreen(),
+                                        builder: (context) =>
+                                            const MoreIconsScreen(),
                                       ));
                                     },
                                     style: ElevatedButton.styleFrom(
@@ -147,16 +165,16 @@ Future<dynamic> addBillBottomSheet(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  Expanded(
+                                  const Expanded(
                                     flex: 1,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        const Text(
+                                        Text(
                                           "When shall we remind you?",
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                           height: 5,
                                         ),
                                         ReminderTimePopup(),
@@ -178,7 +196,7 @@ Future<dynamic> addBillBottomSheet(
                                       ],
                                     ),
                                   ),
-                                  SizedBox(width: 6),
+                                  const SizedBox(width: 6),
                                   Expanded(
                                     flex: 1,
                                     child: Column(
@@ -232,8 +250,12 @@ Future<dynamic> addBillBottomSheet(
                                 "Additional Notes",
                                 textAlign: TextAlign.right,
                               ),
-                              const CustomTextfield(
-                                  width: double.infinity, height: 100),
+                              CustomTextfield(
+                                width: double.infinity,
+                                height: 100,
+                                controller: TextEditingController(),
+                                labelText: "Any additional information...",
+                              ),
                               SizedBox(height: deviceHeight * 0.07)
                             ],
                           ),

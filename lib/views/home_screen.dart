@@ -1,4 +1,5 @@
 import 'package:billy_bills_reminder_app/constants/constants.dart';
+import 'package:billy_bills_reminder_app/models/bill_model.dart';
 import 'package:billy_bills_reminder_app/views/dialogs/edit_bill_dialog.dart';
 import 'package:billy_bills_reminder_app/views/widgets/bill_card.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +12,61 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<BillCard> billCards = [
-    BillCard(billTitle: "electricity bill"),
-    BillCard(billTitle: "gym bill"),
-    BillCard(billTitle: "water bill"),
-    BillCard(billTitle: "internet bill"),
-    BillCard(billTitle: "sewage bill"),
+  List<BillModel> bills = [
+    BillModel(
+        title: "Electricity Bill",
+        category: "Utility",
+        amount: 100,
+        icon: Icons.bolt,
+        dueDate: DateTime.now(),
+        reminderTime: DateTime.timestamp(),
+        duration: BillDuration.Yearly,
+        billStatus: BillStatus.Paid),
+    BillModel(
+        title: "Water Bill",
+        category: "Utility",
+        amount: 50,
+        icon: Icons.water_drop,
+        dueDate: DateTime.now(),
+        reminderTime: DateTime.timestamp(),
+        duration: BillDuration.Monthly,
+        billStatus: BillStatus.Overdue),
+    BillModel(
+        title: "Internet Bill",
+        category: "Utility",
+        amount: 200,
+        icon: Icons.wifi,
+        dueDate: DateTime.now(),
+        reminderTime: DateTime.timestamp(),
+        duration: BillDuration.Weekly,
+        billStatus: BillStatus.Upcoming),
+    BillModel(
+        title: "Electricity Bill",
+        category: "Utility",
+        amount: 100,
+        icon: Icons.bolt,
+        dueDate: DateTime.now(),
+        reminderTime: DateTime.timestamp(),
+        duration: BillDuration.Yearly,
+        billStatus: BillStatus.Paid),
+    BillModel(
+        title: "Water Bill",
+        category: "Utility",
+        amount: 50,
+        icon: Icons.water_drop,
+        dueDate: DateTime.now(),
+        reminderTime: DateTime.timestamp(),
+        duration: BillDuration.Monthly,
+        billStatus: BillStatus.Overdue),
+    BillModel(
+        title: "Internet Bill",
+        category: "Utility",
+        amount: 200,
+        icon: Icons.wifi,
+        dueDate: DateTime.now(),
+        reminderTime: DateTime.timestamp(),
+        duration: BillDuration.Weekly,
+        billStatus: BillStatus.Upcoming),
   ];
   @override
   Widget build(BuildContext context) {
@@ -44,32 +94,32 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: TabBarView(children: [
                   ListView.builder(
-                    itemCount: billCards.length,
+                    itemCount: bills.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          editBillDialog(context, billCards[index]);
+                          editBillDialog(context, bills[index]);
                         },
-                        child: billCards[index],
+                        child: BillCard(bill: bills[index]),
                       );
                     },
                   ),
                   ListView.builder(
-                    itemCount: billCards.length,
+                    itemCount: bills.length,
                     itemBuilder: (context, index) {
-                      return billCards[index];
+                      return BillCard(bill: bills[index]);
                     },
                   ),
                   ListView.builder(
-                    itemCount: billCards.length,
+                    itemCount: bills.length,
                     itemBuilder: (context, index) {
-                      return billCards[index];
+                      return BillCard(bill: bills[index]);
                     },
                   ),
                   ListView.builder(
-                    itemCount: billCards.length,
+                    itemCount: bills.length,
                     itemBuilder: (context, index) {
-                      return billCards[index];
+                      return BillCard(bill: bills[index]);
                     },
                   ),
                 ]),

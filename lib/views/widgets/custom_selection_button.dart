@@ -32,7 +32,7 @@ class CustomSelectionButton extends StatelessWidget {
             icon,
             color: primaryColor,
           ),
-          const SizedBox(width: 4),
+          const SizedBox(width: 18),
           buttonText != null
               ? Text(
                   buttonText ?? "",

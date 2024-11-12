@@ -1,10 +1,11 @@
 import 'dart:ui';
 
 import 'package:billy_bills_reminder_app/constants/constants.dart';
+import 'package:billy_bills_reminder_app/models/bill_model.dart';
 import 'package:billy_bills_reminder_app/views/widgets/bill_card.dart';
 import 'package:flutter/material.dart';
 
-Future<dynamic> editBillDialog(BuildContext context, BillCard billcard) {
+Future<dynamic> editBillDialog(BuildContext context, BillModel bill) {
   return showGeneralDialog(
     context: context,
     barrierDismissible: true,
@@ -34,7 +35,7 @@ Future<dynamic> editBillDialog(BuildContext context, BillCard billcard) {
               ),
               child: Column(
                 children: [
-                  billcard,
+                  BillCard(bill: bill),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

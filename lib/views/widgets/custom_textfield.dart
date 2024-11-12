@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 class CustomTextfield extends StatelessWidget {
   final double width;
   final double height;
-  const CustomTextfield({super.key, required this.width, required this.height});
+  final String? labelText;
+  final TextEditingController controller;
+  const CustomTextfield(
+      {super.key,
+      required this.width,
+      required this.height,
+      this.labelText,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +31,11 @@ class CustomTextfield extends StatelessWidget {
             width: width,
             height: height,
             child: TextField(
+              controller: controller,
               decoration: InputDecoration(
                   floatingLabelBehavior: FloatingLabelBehavior.never,
                   border: InputBorder.none,
-                  labelText: "Enter your bill title",
+                  labelText: labelText,
                   labelStyle: TextStyle(color: Colors.grey.shade400)),
             )));
   }

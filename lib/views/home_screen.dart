@@ -17,10 +17,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final homeviewmodel = ref.watch(homeViewModelProvider);
-    final allBills = homeviewmodel.allBills;
-    final upcomingBills = homeviewmodel.upcomingBills;
-    final overdueBills = homeviewmodel.overDueBills;
-    final paidBills = homeviewmodel.paidBills;
+    final homeviewmodelnotifier = ref.watch(homeViewModelProvider.notifier);
+    // final allBills = homeviewmodel.allBills;
+    final upcomingBills = homeviewmodelnotifier.getUpcomingBills();
+    final overdueBills = homeviewmodelnotifier.getoverDueBills();
+    final paidBills = homeviewmodelnotifier.getPaidBills();
 
     return DefaultTabController(
         length: 4,
@@ -46,13 +47,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               Expanded(
                 child: TabBarView(children: [
                   ListView.builder(
-                    itemCount: allBills.length,
+                    itemCount: homeviewmodel.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          editBillDialog(context, allBills[index]);
+                          editBillDialog(context, homeviewmodel[index]);
                         },
-                        child: BillCard(bill: allBills[index]),
+                        child: BillCard(bill: homeviewmodel[index]),
                       );
                     },
                   ),

@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:time_picker_spinner_pop_up/time_picker_spinner_pop_up.dart';
 
 class ReminderTimePopup extends StatefulWidget {
-  const ReminderTimePopup({super.key});
+  final Function(DateTime)? onChange;
+  const ReminderTimePopup({super.key, required this.onChange});
 
   @override
   State<ReminderTimePopup> createState() => _ReminderTimePopupState();
@@ -18,11 +19,11 @@ class _ReminderTimePopupState extends State<ReminderTimePopup> {
       width: MediaQuery.sizeOf(context).width * 0.5,
       height: 50,
       child: TimePickerSpinnerPopUp(
-        textStyle: const TextStyle(color: highlightColor),
+        textStyle: const TextStyle(color: primaryColor),
         use24hFormat: false,
         mode: CupertinoDatePickerMode.time,
         initTime: DateTime.now(),
-        onChange: (dateTime) {},
+        onChange: widget.onChange,
       ),
     );
   }

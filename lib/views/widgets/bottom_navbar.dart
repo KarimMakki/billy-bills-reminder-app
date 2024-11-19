@@ -1,9 +1,5 @@
 import 'package:billy_bills_reminder_app/constants/constants.dart';
 import 'package:billy_bills_reminder_app/views/bottomSheets/add_bill_bottom_sheet.dart';
-import 'package:billy_bills_reminder_app/views/widgets/custom_selection_button.dart';
-import 'package:billy_bills_reminder_app/views/widgets/custom_textfield.dart';
-import 'package:billy_bills_reminder_app/views/widgets/icons_grid.dart';
-import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,7 +13,6 @@ class BottomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<DateTime?>? date;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
       height: 70,
@@ -109,7 +104,17 @@ class BottomNavbar extends StatelessWidget {
           currentIndex: navigationShell.currentIndex,
           onTap: (int index) async {
             if (index == 2) {
-              await addBillBottomSheet(context, date);
+              await showModalBottomSheet(
+                showDragHandle: true,
+                useSafeArea: true,
+                context: context,
+                isScrollControlled: true,
+                useRootNavigator: true,
+                enableDrag: true,
+                builder: (context) {
+                  return const AddBillBottomSheet();
+                },
+              );
             } else {
               navigationShell.goBranch(index);
             }

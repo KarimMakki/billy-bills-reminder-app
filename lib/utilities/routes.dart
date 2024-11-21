@@ -8,6 +8,7 @@ import 'package:billy_bills_reminder_app/views/reports_insights_screen.dart';
 import 'package:billy_bills_reminder_app/views/settings_screen.dart';
 import 'package:billy_bills_reminder_app/views/splash_screen.dart';
 import 'package:billy_bills_reminder_app/views/main_body.dart';
+import 'package:billy_bills_reminder_app/views/widgets/categories_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,6 +17,7 @@ enum RoutePath {
   onboarding(path: "/onboarding"),
   calendarView(path: "/calendarview"),
   addBill(path: "/addbill"),
+  categories(path: "/categories"),
   reports(path: "/reports"),
   budgetPlanner(path: "/budgetplanner"),
   home(path: "/home"),
@@ -87,6 +89,11 @@ class AppRoutes {
                 )
               ]),
             ]),
+        GoRoute(
+          name: RoutePath.categories.name,
+          path: RoutePath.categories.path,
+          builder: (context, state) => const CategoriesScreen(),
+        ),
         GoRoute(
           name: RoutePath.billsHistory.name,
           path: RoutePath.billsHistory.path,

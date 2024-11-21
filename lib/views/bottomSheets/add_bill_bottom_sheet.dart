@@ -1,10 +1,9 @@
 import 'package:billy_bills_reminder_app/constants/constants.dart';
 import 'package:billy_bills_reminder_app/models/bill_model.dart';
+import 'package:billy_bills_reminder_app/utilities/routes.dart';
 import 'package:billy_bills_reminder_app/viewmodels/home_screen_viewmodel.dart';
-import 'package:billy_bills_reminder_app/views/bottomSheets/duration_bottom_sheet.dart';
 import 'package:billy_bills_reminder_app/views/dialogs/reminder_time_popup.dart';
 import 'package:billy_bills_reminder_app/views/widgets/bill_amount_textfield.dart';
-import 'package:billy_bills_reminder_app/views/widgets/categories_screen.dart';
 import 'package:billy_bills_reminder_app/views/widgets/custom_selection_button.dart';
 import 'package:billy_bills_reminder_app/views/widgets/custom_textfield.dart';
 import 'package:billy_bills_reminder_app/views/widgets/icons_grid.dart';
@@ -29,10 +28,13 @@ class _AddBillBottomSheetState extends State<AddBillBottomSheet> {
   IconData? billIcon;
   BillDuration? duration;
   DateTime? reminderTime;
+  BillModel? newBill;
+  String? category;
   @override
   Widget build(BuildContext context) {
     final double deviceHeight = MediaQuery.of(context).size.height;
     final double deviceWidth = MediaQuery.of(context).size.width;
+
     return Consumer(
       builder: (context, ref, child) {
         return DraggableScrollableSheet(
@@ -67,9 +69,10 @@ class _AddBillBottomSheetState extends State<AddBillBottomSheet> {
                                 const EdgeInsets.symmetric(horizontal: 8.0),
                             child: ElevatedButton(
                                 onPressed: () {
-                                  BillModel? bill;
-                                  if (formKey.currentState!.validate()) {
-                                    bill = BillModel(
+                                  if (formKey.currentState!.validate() &&
+                                      date != null &&
+                                      duration != null) {
+                                    newBill = BillModel(
                                         title: billTitleController.text,
                                         category: "category",
                                         amount: double.parse(
@@ -85,9 +88,9 @@ class _AddBillBottomSheetState extends State<AddBillBottomSheet> {
                                                 : BillStatus.Overdue);
                                     ref
                                         .read(homeViewModelProvider.notifier)
-                                        .addBill(bill);
+                                        .addBill(newBill!);
+                                    context.pop();
                                   }
-                                  context.pop();
                                 },
                                 style: ElevatedButton.styleFrom(
                                     minimumSize: Size(deviceWidth * 0.2, 30),
@@ -135,16 +138,13 @@ class _AddBillBottomSheetState extends State<AddBillBottomSheet> {
                                   ),
                                   CustomSelectionButton(
                                     icon: Icons.category,
-                                    buttonText: "Select a Category",
+                                    buttonText: category ?? "Select a Category",
                                     height: 50,
                                     width: double.infinity,
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const CategoriesScreen(),
-                                          ));
+                                    onPressed: () async {
+                                      category = await context
+                                          .push(RoutePath.categories.path);
+                                      setState(() {});
                                     },
                                   ),
                                   const SizedBox(

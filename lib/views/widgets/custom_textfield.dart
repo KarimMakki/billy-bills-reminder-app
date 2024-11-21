@@ -30,7 +30,13 @@ class CustomTextfield extends StatelessWidget {
                 ]),
             width: width,
             height: height,
-            child: TextField(
+            child: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'This field is required';
+                }
+                return null;
+              },
               controller: controller,
               decoration: InputDecoration(
                   floatingLabelBehavior: FloatingLabelBehavior.never,

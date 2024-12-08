@@ -58,7 +58,7 @@ class CategoriesScreen extends StatelessWidget {
                                 color: primaryColor,
                               ),
                               SizedBox(width: 4),
-                              Text(subCategory),
+                              Text(subCategory.name),
                             ],
                           ),
                         ),

@@ -12,7 +12,7 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ValueNotifier<List<bool>> isExpandedList =
-        ValueNotifier(List<bool>.filled(categoriesList.length, false));
+        ValueNotifier(List<bool>.filled(billCategories.length, false));
 
     return Scaffold(
       appBar: const InnerAppbar(title: "Categories"),
@@ -26,7 +26,7 @@ class CategoriesScreen extends StatelessWidget {
                 isExpandedList.value = List.from(isExpandedList.value)
                   ..[panelIndex] = !isExpandedList.value[panelIndex];
               },
-              children: categoriesList.asMap().entries.map((entry) {
+              children: billCategories.asMap().entries.map((entry) {
                 final index = entry.key;
                 final category = entry.value;
 
@@ -36,7 +36,7 @@ class CategoriesScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8.0, vertical: 10),
                       child: ListTile(
-                        leading: category.icon,
+                        leading: Icon(category.icon),
                         title: Text(category.name),
                       ),
                     );
@@ -46,17 +46,19 @@ class CategoriesScreen extends StatelessWidget {
                     children: category.subCategories.map((subCategory) {
                       return InkWell(
                         onTap: () {
-                          context.pop(subCategory);
+                          context.pop(subCategory.name);
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8.0, vertical: 12),
                           child: Row(
                             children: [
-                              Icon(
-                                Icons.water_drop,
-                                color: primaryColor,
-                              ),
+                              subCategory.image != null
+                                  ? subCategory.image!
+                                  : Icon(
+                                      subCategory.icon,
+                                      color: primaryColor,
+                                    ),
                               SizedBox(width: 4),
                               Text(subCategory.name),
                             ],
